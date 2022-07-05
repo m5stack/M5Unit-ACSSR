@@ -12,6 +12,9 @@
 *******************************************************************************
   Modbus relay control
   Modbus 继电器控制
+  Libraries:
+    - [ArduinoModbus](https://github.com/m5stack/ArduinoModbus)
+    - [Arduino485](https://github.com/m5stack/ArduinoRS485)
 */
 
 #include "M5Atom.h"

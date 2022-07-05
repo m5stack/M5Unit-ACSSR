@@ -12,6 +12,9 @@
 *******************************************************************************
   Modbus ID verification
   Modbus ID 确认
+  Libraries:
+    - [ArduinoModbus](https://github.com/m5stack/ArduinoModbus)
+    - [Arduino485](https://github.com/m5stack/ArduinoRS485)
 */
 
 #include "M5Atom.h"
