@@ -11,7 +11,7 @@ Contains M5Stack **UNIT ACSSR** related case programs. control cases related to 
 
 ## Related Link
 
-- [Document & AT Command](https://docs.m5stack.com/en/unit/acssr)
+- [Document & Datasheet - M5Unit-ACSSR](https://docs.m5stack.com/en/unit/acssr)
 - [Firmware & Register](https://github.com/m5stack/M5Unit-ACSSR-Internal-FW)
 
 ## License
