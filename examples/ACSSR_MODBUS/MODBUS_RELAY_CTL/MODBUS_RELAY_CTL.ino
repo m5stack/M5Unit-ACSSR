@@ -1,7 +1,21 @@
-
+/*
+*******************************************************************************
+* Copyright (c) 2022 by M5Stack
+*                  Equipped with M5Atom sample source code
+*                          配套 M5Atom 示例源代码
+*
+* Visit for more information: https://docs.m5stack.com/en/unit/acssr
+* 获取更多资料请访问: https://docs.m5stack.com/zh_CN/unit/acssr
+*
+* Product: ACSSR
+* Date: 2022/7/5
+*******************************************************************************
+  Modbus relay control
+  Modbus 继电器控制
+*/
 
 #include "M5Atom.h"
-#include "UNIT_ACSSR.h"
+#include "M5_ACSSR.h"
 #include <ArduinoModbus.h>
 #include <ArduinoRS485.h>
 

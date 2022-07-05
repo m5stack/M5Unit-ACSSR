@@ -1,5 +1,5 @@
 {
-  "name": "UNIT_ACSSR",
+  "name": "M5Unit-ACSSR",
   "description": "Library for M5Stack UNIT ACSSR",
   "keywords": "M5Stack UNIT ACSSR",
   "authors": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/m5stack/M5Unit-ACSSR.git"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "frameworks": "arduino",
   "platforms": "espressif32"
 }

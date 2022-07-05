@@ -1,12 +1,27 @@
+/*
+*******************************************************************************
+* Copyright (c) 2022 by M5Stack
+*                  Equipped with M5Atom sample source code
+*                          配套 M5Atom 示例源代码
+*
+* Visit for more information: https://docs.m5stack.com/en/unit/acssr
+* 获取更多资料请访问: https://docs.m5stack.com/zh_CN/unit/acssr
+*
+* Product: ACSSR
+* Date: 2022/7/5
+*******************************************************************************
+  I2C Slave Control
+  I2C 从机控制
+*/
 #include "M5Atom.h"
-#include "UNIT_ACSSR.h"
+#include "M5_ACSSR.h"
 
-UNIT_ACSSR SSR;
+M5_ACSSR SSR;
 
 void setup() {
     M5.begin(true, false, true);
     M5.dis.fillpix(0xff0000);
-    while (!SSR.begin(&Wire, 26, 32, DEVICE_DEFAULT_ADDR)) {
+    while (!SSR.begin(&Wire, 26, 32, ACSSR_DEFAULT_ADDR)) {
         Serial.println("ACSSR I2C INIT ERROR");
         delay(1000);
     }

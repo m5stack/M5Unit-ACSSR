@@ -1,6 +1,8 @@
-#include "UNIT_ACSSR.h"
+#include "M5_ACSSR.h"
 
-bool UNIT_ACSSR::begin(TwoWire *wire, uint8_t sda, uint8_t scl, uint8_t addr) {
+/*! @brief Initialize the ACSSR.
+    @return True if the init was successful, otherwise false.. */
+bool M5_ACSSR::begin(TwoWire *wire, uint8_t sda, uint8_t scl, uint8_t addr) {
     _wire = wire;
     _addr = addr;
     _sda  = sda;
@@ -16,8 +18,10 @@ bool UNIT_ACSSR::begin(TwoWire *wire, uint8_t sda, uint8_t scl, uint8_t addr) {
     }
 }
 
-bool UNIT_ACSSR::writeBytes(uint8_t addr, uint8_t reg, uint8_t *buffer,
-                            uint8_t length) {
+/*! @brief Write a certain length of data to the specified register address.
+    @return True if the write was successful, otherwise false.. */
+bool M5_ACSSR::writeBytes(uint8_t addr, uint8_t reg, uint8_t *buffer,
+                          uint8_t length) {
     _wire->beginTransmission(addr);
     _wire->write(reg);
     _wire->write(buffer, length);
@@ -25,8 +29,10 @@ bool UNIT_ACSSR::writeBytes(uint8_t addr, uint8_t reg, uint8_t *buffer,
     return false;
 }
 
-bool UNIT_ACSSR::readBytes(uint8_t addr, uint8_t reg, uint8_t *buffer,
-                           uint8_t length) {
+/*! @brief Read a certain length of data to the specified register address.
+    @return True if the read was successful, otherwise false.. */
+bool M5_ACSSR::readBytes(uint8_t addr, uint8_t reg, uint8_t *buffer,
+                         uint8_t length) {
     uint8_t index = 0;
     _wire->beginTransmission(addr);
     _wire->write(reg);
@@ -40,23 +46,31 @@ bool UNIT_ACSSR::readBytes(uint8_t addr, uint8_t reg, uint8_t *buffer,
     return false;
 }
 
-bool UNIT_ACSSR::on() {
+/*! @brief Turn on ACSSR.
+    @return True if the open is successful, otherwise it is false.. */
+bool M5_ACSSR::on() {
     uint8_t data = 1;
     return writeBytes(_addr, ACSSR_I2C_RELAY_REG, &data, 1);
 }
 
-bool UNIT_ACSSR::off() {
+/*! @brief Turn off ACSSR.
+    @return True if the close is successful, false otherwise.. */
+bool M5_ACSSR::off() {
     uint8_t data = 0;
     return writeBytes(_addr, ACSSR_I2C_RELAY_REG, &data, 1);
 }
 
-bool UNIT_ACSSR::status() {
+/*! @brief Read the status of ACSSR.
+    @return True if the read was successful, otherwise false.. */
+bool M5_ACSSR::status() {
     uint8_t data = 0;
     readBytes(_addr, ACSSR_I2C_RELAY_REG, &data, 1);
     return data;
 }
 
-bool UNIT_ACSSR::setLEDColor(uint32_t colorHEX) {
+/*! @brief Set the color of led lights.
+    @return True if the set was successful, otherwise false.. */
+bool M5_ACSSR::setLEDColor(uint32_t colorHEX) {
     uint8_t color[3];
     // RED
     color[0] = (colorHEX >> 16) & 0xff;
@@ -67,7 +81,9 @@ bool UNIT_ACSSR::setLEDColor(uint32_t colorHEX) {
     return writeBytes(_addr, ACSSR_I2C_LED_REG, color, 3);
 }
 
-uint32_t UNIT_ACSSR::getLEDColor() {
+/*! @brief Read the color of led lights.
+    @return True if the read was successful, otherwise false.. */
+uint32_t M5_ACSSR::getLEDColor() {
     uint8_t color[3];
     uint32_t colorHEX = 0;
     readBytes(_addr, ACSSR_I2C_LED_REG, color, 3);
@@ -77,7 +93,9 @@ uint32_t UNIT_ACSSR::getLEDColor() {
     return colorHEX;
 }
 
-bool UNIT_ACSSR::setDeviceAddr(uint8_t addr) {
+/*! @brief Set the I2C address of the device
+    @return True if the set was successful, otherwise false.. */
+bool M5_ACSSR::setDeviceAddr(uint8_t addr) {
     uint8_t data = addr;
     if (writeBytes(_addr, ACSSR_I2C_ADDR_REG, &data, 1)) {
         _addr = addr;
@@ -87,7 +105,9 @@ bool UNIT_ACSSR::setDeviceAddr(uint8_t addr) {
     }
 }
 
-uint8_t UNIT_ACSSR::getVersion() {
+/*! @brief Get the Version of Firmware.
+    @return Firmware version */
+uint8_t M5_ACSSR::getVersion() {
     uint8_t data = 0;
     readBytes(_addr, ACSSR_I2C_VERSION_REG, &data, 1);
     return data;
