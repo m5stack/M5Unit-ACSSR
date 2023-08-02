@@ -38,10 +38,12 @@ void setup() {
 void loop() {
     // ACSSR CTL ON
     ModbusRTUClient.coilWrite(slave_id, ACSSR_RELAY_COIL_ADDR, 0xff);
+    delay(600);
     // ACSSR LED CTL RED COLOR
     ModbusRTUClient.holdingRegisterWrite(slave_id, ACSSR_LED_HOLDING_ADDR,
                                          0xF800);
 
+    delay(600);
     // GET ACSSR STATUS
     if (ModbusRTUClient.requestFrom(slave_id, COILS, ACSSR_RELAY_COIL_ADDR,
                                     1)) {
@@ -52,7 +54,7 @@ void loop() {
         }
         Serial.println();
     }
-
+    delay(600);
     // GET ACSSR LED COLOR
     if (ModbusRTUClient.requestFrom(slave_id, HOLDING_REGISTERS,
                                     ACSSR_LED_HOLDING_ADDR, 1)) {
@@ -67,12 +69,17 @@ void loop() {
         }
         Serial.println();
     }
-    delay(1000);
+
+    delay(600);
+
     // ACSSR CTL OFF
     ModbusRTUClient.coilWrite(slave_id, ACSSR_RELAY_COIL_ADDR, 0x00);
+    delay(600);
     // ACSSR LED CTL GREEN COLOR
     ModbusRTUClient.holdingRegisterWrite(slave_id, ACSSR_LED_HOLDING_ADDR,
                                          0x07E0);
+
+    delay(600);
 
     // GET ACSSR STATUS
     if (ModbusRTUClient.requestFrom(slave_id, COILS, ACSSR_RELAY_COIL_ADDR,
@@ -88,7 +95,7 @@ void loop() {
         }
         Serial.println();
     }
-
+    delay(600);
     // GET ACSSR LED COLOR
     if (ModbusRTUClient.requestFrom(slave_id, HOLDING_REGISTERS,
                                     ACSSR_LED_HOLDING_ADDR, 1)) {
@@ -101,7 +108,7 @@ void loop() {
         }
         Serial.println();
     }
-    delay(1000);
+    delay(600);
     // GET ACSSR FW VERSION
     if (ModbusRTUClient.requestFrom(slave_id, HOLDING_REGISTERS,
                                     ACSSR_VERSION_HOLDING_ADDR, 1)) {
@@ -112,4 +119,5 @@ void loop() {
         }
         Serial.println();
     }
+    delay(600);
 }
